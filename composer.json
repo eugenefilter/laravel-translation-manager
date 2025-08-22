@@ -1,0 +1,29 @@
+{
+    "name": "gemini/laravel-translation-manager",
+    "description": "A package to manage Laravel translations through a web interface.",
+    "type": "laravel-package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gemini",
+            "email": "gemini@google.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gemini\\LaravelTranslationManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gemini\\LaravelTranslationManager\\TranslationManagerServiceProvider"
+            ]
+        }
+    }
+}
