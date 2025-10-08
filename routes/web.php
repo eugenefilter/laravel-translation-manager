@@ -12,10 +12,22 @@ if (!is_array($userMiddleware)) {
 
 $guardMiddleware = [EnsureStatefulDomains::class];
 
+// Optional locale prefix integration with mcamara/laravel-localization
+$localePrefix = '';
+if (config('translation-manager.locale_prefix', false)
+    && class_exists(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::class)) {
+    $localePrefix = \Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale();
+}
+
+$prefix = trim(($localePrefix ? $localePrefix . '/' : '') . 'translations', '/');
+
+// Merge middlewares: web + user + guard + optional localization ones
+$localizationMiddleware = (array) config('translation-manager.localization_middleware', []);
+
 Route::group([
-	'prefix' => 'translations',
-	// Use application's 'web' group to preserve auth/session behavior
-	'middleware' => array_values(array_filter(array_merge(['web'], $userMiddleware, $guardMiddleware))),
+    'prefix' => $prefix,
+    // Use application's 'web' group to preserve auth/session behavior
+    'middleware' => array_values(array_filter(array_merge(['web'], $userMiddleware, $guardMiddleware, $localizationMiddleware))),
 ], function () {
 
 	Route::get('/', [TranslationController::class, 'index'])->name('translations.index');

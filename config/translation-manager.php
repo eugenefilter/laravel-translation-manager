@@ -60,4 +60,31 @@ return [
 	|
 	*/
 	'stateful_domains' => env('LOG_VIEWER_API_STATEFUL_DOMAINS', ''),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Locale Prefix Integration (optional)
+	|--------------------------------------------------------------------------
+	|
+	| If your application uses mcamara/laravel-localization and you want this
+	| package's routes to live under the locale prefix (e.g. /en/translations),
+	| enable this option. When enabled and the package is present, all
+	| Translation Manager routes will be prefixed with the current locale.
+	|
+	| Set via env: TRANSLATION_MANAGER_LOCALE_PREFIX=true
+	*/
+	'locale_prefix' => env('TRANSLATION_MANAGER_LOCALE_PREFIX', false),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Localization Middlewares (optional)
+	|--------------------------------------------------------------------------
+	|
+	| If you are using mcamara/laravel-localization, you may also want to apply
+	| its middlewares to the Translation Manager routes. Add any of your
+	| localization middlewares here; they will be appended to the route group.
+	|
+	| Example: ['localize', 'localizationRedirect', 'localeSessionRedirect']
+	*/
+	'localization_middleware' => [],
 ];
