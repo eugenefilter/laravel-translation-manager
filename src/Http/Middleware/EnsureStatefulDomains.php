@@ -1,6 +1,6 @@
 <?php
 
-namespace Gemini\LaravelTranslationManager\Http\Middleware;
+namespace Oleinykov\LaravelTranslationManager\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

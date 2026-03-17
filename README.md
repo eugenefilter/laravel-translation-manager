@@ -4,14 +4,33 @@ A simple, web-based UI for managing Laravel translation files (PHP array and JSO
 
 Installation
 
-- Require the package via Composer: `composer require gemini/laravel-translation-manager`
+- Require the package via Composer: `composer require oleinykov/laravel-translation-manager`
 - The service provider auto-registers routes and views.
-- Optionally publish config: `php artisan vendor:publish --tag=config --provider="Gemini\\LaravelTranslationManager\\TranslationManagerServiceProvider"`
+- Optionally publish config: `php artisan vendor:publish --tag=config --provider="Oleinykov\\LaravelTranslationManager\\TranslationManagerServiceProvider"`
 
 Routes
 
 - UI mounts under `translations/*`.
 - Visit `/translations` for the dashboard.
+
+Localization (Locale Prefix)
+
+If your app is multilingual (e.g., using `mcamara/laravel-localization`), you can mount Translation Manager under a locale-aware prefix so routes look like `/{locale}/translations` (for example, `/en/translations`, `/uk/translations`).
+
+Enable via environment or config:
+
+- `.env`: set `TRANSLATION_MANAGER_LOCALE_PREFIX=true`
+- Or `config/translation-manager.php`:
+  - `'locale_prefix' => true` to activate locale-prefixed routes
+  - Optionally add your localization middlewares so locale resolution stays consistent:
+    - `'localization_middleware' => ['localize', 'localizationRedirect', 'localeSessionRedirect', 'localeViewPath']`
+
+Notes:
+
+- If `mcamara/laravel-localization` is installed, the current locale is used for the prefix.
+- If disabled or the package is not present, routes remain under `/translations`.
+- After changing configuration, clear caches if needed:
+  - `php artisan route:clear && php artisan config:clear && php artisan cache:clear`
 
 Configuration
 
@@ -25,7 +44,7 @@ Security (Log Viewer–style)
 
 All package routes run through the application's `web` middleware group, your configurable middleware stack, and built-in guards inspired by `opcodesio/log-viewer`:
 
-- `Gemini\\LaravelTranslationManager\\Http\\Middleware\\EnsureStatefulDomains`:
+- `Oleinykov\\LaravelTranslationManager\\Http\\Middleware\\EnsureStatefulDomains`:
   - Reads allowed hosts from `env('LOG_VIEWER_API_STATEFUL_DOMАINS')` (exposed in config as `stateful_domains`).
   - If not set or empty, allows requests from any host.
   - Supports exact hosts and wildcard subdomains like `*.example.com`.

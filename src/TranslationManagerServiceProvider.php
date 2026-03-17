@@ -1,6 +1,6 @@
 <?php
 
-namespace Gemini\LaravelTranslationManager;
+namespace Oleinykov\LaravelTranslationManager;
 
 use Illuminate\Support\ServiceProvider;
 

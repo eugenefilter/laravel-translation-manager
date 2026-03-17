@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Gemini\LaravelTranslationManager\Http\Controllers\TranslationController;
-use Gemini\LaravelTranslationManager\Http\Middleware\EnsureAuthorized;
-use Gemini\LaravelTranslationManager\Http\Middleware\EnsureStatefulDomains;
+use Oleinykov\LaravelTranslationManager\Http\Controllers\TranslationController;
+use Oleinykov\LaravelTranslationManager\Http\Middleware\EnsureAuthorized;
+use Oleinykov\LaravelTranslationManager\Http\Middleware\EnsureStatefulDomains;
 
 $userMiddleware = config('translation-manager.middleware', []);
 if (!is_array($userMiddleware)) {

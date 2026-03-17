@@ -1,6 +1,6 @@
 <?php
 
-namespace Gemini\LaravelTranslationManager\Http\Controllers;
+namespace Oleinykov\LaravelTranslationManager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
