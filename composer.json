@@ -1,0 +1,29 @@
+{
+    "name": "oleinykov/laravel-translation-manager",
+    "description": "A package to manage Laravel translations through a web interface.",
+    "type": "laravel-package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "oleinykov",
+            "email": "oleinykov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0|^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oleinykov\\LaravelTranslationManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Oleinykov\\LaravelTranslationManager\\TranslationManagerServiceProvider"
+            ]
+        }
+    }
+}
