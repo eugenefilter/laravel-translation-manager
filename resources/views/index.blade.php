@@ -89,7 +89,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="button"
-                            x-on:click="window.__tmConfirm = () => $el.closest('form').submit(); window.dispatchEvent(new CustomEvent('tm:openModal', { detail: { type: 'confirmGeneric', message: 'Вы уверены, что хотите удалить этот ключ из всех файлов?' } }));"
+                            x-on:click="(() => { const form = $el.closest('form'); window.__tmConfirm = () => form.submit(); window.dispatchEvent(new CustomEvent('tm:openModal', { detail: { type: 'confirmGeneric', action: form.getAttribute('action'), message: 'Вы уверены, что хотите удалить этот ключ из всех файлов?' } })); })()"
                             class="tm-icon-btn tm-icon-btn--danger" title="Delete key everywhere" aria-label="Delete key everywhere">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tm-icon">
                         <path d="M3 6h18"/>

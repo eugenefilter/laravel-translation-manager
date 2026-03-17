@@ -370,8 +370,19 @@
               </div>
             </div>
           </template>
-          <!-- Generic confirm (executes window.__tmConfirm if set) -->
-          <template x-if="mode === 'confirm-generic'">
+          <!-- Generic confirm: prefer direct form submit when action provided; fallback to window.__tmConfirm -->
+          <template x-if="mode === 'confirm-generic' && confirm.action">
+            <form :action="confirm.action" method="POST" class="p-6">
+              @csrf
+              @method('DELETE')
+              <p class="text-sm text-slate-700 dark:text-slate-300 mb-4" x-text="confirm.message || 'Are you sure?'"></p>
+              <div class="flex items-center justify-end gap-2">
+                <button type="button" x-on:click="close()" class="px-3 py-1.5 rounded-md text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Cancel</button>
+                <button type="submit" class="px-3 py-1.5 rounded-md text-sm bg-red-600 hover:bg-red-700 text-white font-semibold">Delete</button>
+              </div>
+            </form>
+          </template>
+          <template x-if="mode === 'confirm-generic' && !confirm.action">
             <div class="p-6">
               <p class="text-sm text-slate-700 dark:text-slate-300 mb-4" x-text="confirm.message || 'Are you sure?'"></p>
               <div class="flex items-center justify-end gap-2">
